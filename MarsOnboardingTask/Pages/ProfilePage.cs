@@ -11,86 +11,7 @@ namespace MarsOnboardingTask.Pages
 {
     public class ProfilePage
     {       
-        public void AddNewLanguage(IWebDriver driver, string language)
-        {
-            Thread.Sleep(2000);
-
-            // Click on Add New button
-            IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div")); 
-            addNewButton.Click();
-            Thread.Sleep(1000);
-
-            // Input Language into Add Language textbox
-            IWebElement languageTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
-            languageTextbox.SendKeys(language);
-
-            // Select Level option from dropdown list
-            IWebElement levelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
-            levelDropdown.Click();
-            Thread.Sleep(1000);
-
-            IWebElement fluentOption = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]"));
-            fluentOption.Click();
-
-            // Click on Add button
-            IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
-            addButton.Click();
-            Thread.Sleep(500);
-           
-        } 
-        public void EditLanguage(IWebDriver driver, string language)
-        {
-
-        }
-        public void CheckLanguageNotification(IWebDriver driver, string language)
-        {
-            // Check if new Language has been created by Notication Popup
-            IWebElement notificationPopup = driver.FindElement(By.XPath("/html/body/div[1]/div"));
-
-            Assert.That(notificationPopup.Text == language + " has been added to your languages", "Language has not been successfully added");
-        }
-
-        public void GoToSkillsTab(IWebDriver driver)
-        {
-            Thread.Sleep(1000);
-
-            // Click on Skills Tab
-            IWebElement skillsTab = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
-            skillsTab.Click();
-            Thread.Sleep(1000);
-        }
-        public void AddNewSkill(IWebDriver driver)
-        {
-            Thread.Sleep(1000);
-
-            // Click on Add New button
-            IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
-            addNewButton.Click();
-            Thread.Sleep(1000);
-
-            // Input Skill in Skills textbox
-            IWebElement skillTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[1]/input"));
-            skillTextbox.SendKeys("Selenium");
-
-            // Select Level option from dropdown list
-            IWebElement levelDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select"));
-            levelDropdown.Click();
-
-            IWebElement beginnerOption = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[2]"));
-            beginnerOption.Click();
-
-            // Click on Add button
-            IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
-            addButton.Click();
-            Thread.Sleep(500);
-
-        }
-        public void CheckSkillsNotification(IWebDriver driver)
-        {
-            IWebElement notificationPopup = driver.FindElement(By.XPath("/html/body/div[1]/div"));
-
-            Assert.That(notificationPopup.Text == "Selenium has been added to your skills", "Skill has not been successfully added");
-        }
+        
 
         public void GoToEducationTab(IWebDriver driver)
         {
@@ -155,10 +76,12 @@ namespace MarsOnboardingTask.Pages
             // Check if new Education has been created by Notication Popup
             IWebElement notificationPopup = driver.FindElement(By.XPath("/html/body/div[1]")); 
 
-            Assert.That(notificationPopup.Text ==  notification, "Education has not been successfully added");
+            Assert.That(notificationPopup.Text ==  notification, "Education has not been changed");
+            Thread.Sleep(1000);
         }
         public void EditEducation(IWebDriver driver, string university, string country, string title, string degree, string year)
         {
+            Thread.Sleep(1000);
             // Click on new Education edit button and make changes
             IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[6]/span[1]/i"));
             editButton.Click();
@@ -189,7 +112,7 @@ namespace MarsOnboardingTask.Pages
             IWebElement editDegreeTextbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td/div[2]/div[2]/input"));
             editDegreeTextbox.Clear();
             editDegreeTextbox.SendKeys(degree);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
 
             // Edit Year dropdown list
             IWebElement editYearDropdown = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td/div[2]/div[3]/select"));
@@ -204,12 +127,42 @@ namespace MarsOnboardingTask.Pages
             updateButton.Click();
             Thread.Sleep(1000);
         }
-        public string GetEditedUniversity(IWebDriver driver)
+        public void DeleteEducation(IWebDriver driver)
+        {
+            IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody[1]/tr/td[6]/span[2]/i"));
+            deleteButton.Click();
+            Thread.Sleep(1000);
+        }
+
+        public string GetUniversity(IWebDriver driver)
         {
             IWebElement actualUniversity = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[2]"));
             return actualUniversity.Text;
 
         }
+        public string GetCountry(IWebDriver driver)
+        {
+            IWebElement actualCountry = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return actualCountry.Text;
 
+        }
+        public string GetTitle(IWebDriver driver)
+        {
+            IWebElement actualTitle = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[3]"));
+            return actualTitle.Text;
+
+        }
+        public string GetDegree(IWebDriver driver)
+        {
+            IWebElement actualDegree = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[4]"));
+            return actualDegree.Text;
+
+        }
+        public string GetYear(IWebDriver driver)
+        {
+            IWebElement actualYear = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[5]"));
+            return actualYear.Text;
+
+        }
     }
 }

@@ -108,9 +108,8 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("02) Edit an existing Education record with valid details")]
-        [NUnit.Framework.TestCaseAttribute("Massey", "Australia", "PHD", "Food Science", "2021", "Education as been updated", null)]
-        [NUnit.Framework.TestCaseAttribute("", "New Zealand", "B.Sc", "Food Science", "2017", "Please enter all the fields", null)]
-        [NUnit.Framework.TestCaseAttribute("Massey", "Australia", "PHD", "Food Science", "2021", "This information is already exist.", null)]
+        [NUnit.Framework.TestCaseAttribute("Massey", "New Zealand", "PHD", "Food Science", "2021", "This information is already exist.", null)]
+        [NUnit.Framework.TestCaseAttribute("Massey", "Australia", "PHD", "Food Science", "2023", "Education as been updated", null)]
         public void _02EditAnExistingEducationRecordWithValidDetails(string universityName, string country, string title, string degree, string graduationYear, string notification, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -136,11 +135,11 @@ this.ScenarioInitialize(scenarioInfo);
   testRunner.Given("I logged in successfully and navigate to Education Tab to edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
-  testRunner.When(string.Format("I edit \'{0}\', \'{1}\', \'{2}\', \'{3}\', \'{4}\' in Education Tab", universityName, country, title, degree, graduationYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.When(string.Format("I edit {0}, {1}, {2}, {3}, {4} in Education Tab", universityName, country, title, degree, graduationYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
-  testRunner.Then(string.Format("The Education details should be updated with \'{0}\', \'{1}\', \'{2}\', \'{3}\', \'{4}\' an" +
-                            "d I should see \'{5}\'", universityName, country, title, degree, graduationYear, notification), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then(string.Format("The Education details should be updated with {0}, {1}, {2}, {3}, {4} and I should" +
+                            " see {5}", universityName, country, title, degree, graduationYear, notification), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -148,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("03) Delete an existing Education record in Profile details")]
-        [NUnit.Framework.TestCaseAttribute("Massey", "Australia", "PHD", "Foood Science", "2021", "Education enrty successfully removed", null)]
+        [NUnit.Framework.TestCaseAttribute("Massey", "Australia", "PHD", "Food Science", "2023", "Education entry successfully removed", null)]
         public void _03DeleteAnExistingEducationRecordInProfileDetails(string universityName, string country, string title, string degree, string graduationYear, string notification, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -171,10 +170,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 24
-  testRunner.Given("I click on the Delete button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("I logged in successfully and navigate to Education Tab to delete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 25
-  testRunner.Then(string.Format("The Education details should be deleted and I should see \'{0}\'", notification), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.When(string.Format("I click on the Delete button for {0}, {1}, {2}, {3}, {4}", universityName, country, title, degree, graduationYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+  testRunner.Then(string.Format("The Education details should be deleted and I should see {0}", notification), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

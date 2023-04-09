@@ -23,6 +23,28 @@ Scenario: I add Description on my profile
 		And I click on Save button
 		Then The description should be updated and I should see the Notification
 
+Scenario: Create a new Language in my Profile 
+	Given I logged in successfully and I am in the Languages Tab
+	When I click on Add New button and create a Language and Level
+	Then The language should be added and I should see Notification 
+	
+	Scenario Outline: Edit an existing Language with valid details
+		Given  I logged in successfully and I click on Edit button
+		When I edit language details
+		And I click on Update button
+		Then The language should be updated and I should see the Notification
+
+Scenario: Create a new Skill in my Profile 
+	Given I logged in successfully and navigated to Skills Tab
+	When I click on Add New button and add a Skill and Level
+	Then The Skill should be added and I should see Notification 
+
+	Scenario Outline: Edit an existing Skill with valid details
+		Given  I logged in successfully and I click on Edit button in Skills
+		When I edit skills details
+		And I click on Update button in Skills Tab
+		Then The Skill should be updated and I should see the Notification
+
 Scenario: I add Certification on my profile 
 	Given I logged in successfully and navigate to Certification tab
 	When I add certification details and click Add

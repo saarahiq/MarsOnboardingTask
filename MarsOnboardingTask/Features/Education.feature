@@ -11,20 +11,21 @@ Scenario: 01) Add education in Profile details
 
 	Scenario Outline: 02) Edit an existing Education record with valid details
 		Given I logged in successfully and navigate to Education Tab to edit
-		When I edit '<University Name>', '<Country>', '<Title>', '<Degree>', '<Graduation Year>' in Education Tab
-		Then The Education details should be updated with '<University Name>', '<Country>', '<Title>', '<Degree>', '<Graduation Year>' and I should see '<Notification>'
+		When I edit <University Name>, <Country>, <Title>, <Degree>, <Graduation Year> in Education Tab
+		Then The Education details should be updated with <University Name>, <Country>, <Title>, <Degree>, <Graduation Year> and I should see <Notification>
 	
 		Examples: 
 		| University Name | Country     | Title | Degree       | Graduation Year | Notification                       |
-		| Massey          | Australia   | PHD   | Food Science | 2021            | Education as been updated          |
-		|                 | New Zealand | B.Sc  | Food Science | 2017            | Please enter all the fields        |
-		| Massey          | Australia   | PHD   | Food Science | 2021            | This information is already exist. |
+		| Massey          | New Zealand | PHD   | Food Science | 2021            | This information is already exist. |
+		| Massey          | Australia   | PHD   | Food Science | 2023            | Education as been updated          |
+		
 
 	Scenario Outline: 03) Delete an existing Education record in Profile details
-		Given I click on the Delete button
-		Then The Education details should be deleted and I should see '<Notification>'
+		Given  I logged in successfully and navigate to Education Tab to delete
+		When I click on the Delete button for <University Name>, <Country>, <Title>, <Degree>, <Graduation Year>
+		Then The Education details should be deleted and I should see <Notification>
 
 		Examples: 
-		| University Name | Country     | Title | Degree        | Graduation Year | Notification                         |
-		| Massey          | Australia | PHD   | Foood Science | 2021            | Education enrty successfully removed |
+		| University Name | Country     | Title | Degree       | Graduation Year | Notification                         |
+		| Massey          | Australia   | PHD   | Food Science | 2023            | Education entry successfully removed |
 		
